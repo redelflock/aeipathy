@@ -1,6 +1,6 @@
 <style>
 /* =========== PROVINCE INFO BOXES =========== */
-
+#info_box_bdr { position:absolute; margin:-300px 0px 0px 0px; z-index:1000; }
 .mapcontent { font-family: 'Montserrat', sans-serif; font-size:14px; line-height:144%; border-radius:5px; border:1px solid #cccccc; background-color:#fcfcfc; padding:10px; width:420px; position:absolute; display:none; }
 .mapcontent u, .mapcontent span { display:block; margin-top:60px; font-family: 'cardo', serif; font-size:22px; text-transform:uppercase; border:0px; padding:0px; }
 .mapcontent b, .mapcontent .tblhead, .mapcontent table td, .mapcontent a { border:0px; font-weight:500; font-family: 'Poppins', sans-serif; font-size:14px; font-style:inherit; }
@@ -17,7 +17,7 @@
 .map_nav .mn.mn_buffer { display:inline-block; width:100px; }
 
 /* =========== MAP BOX / CONTAINER =========== */
-#map_box_bdr { position: relative; border: 1px solid #ccc; width: 720px; height: 560px; overflow: hidden; }
+#map_box_bdr { position: relative; border: 1px solid #ccc; width: 720px; height: 560px; overflow: hidden; z-index:20; }
 #map_box { position: relative; width: 720px; height: 560px; background-image: url('//storage.forums.net/7040057/images/ElgkjrwIBGUNuyxwTKYI.png'); background-size: 720px 560px; background-repeat: no-repeat; background-position: 0px 0px; transition: width 0.6s ease, height 0.6s ease, margin 0.6s ease, background-size 0.6s ease; }
 #realm_polys, #aegeas_polys, #europa_polys, #ostjord_polys, #sahra_polys, #sharqaan_polys, #hattusa_polys, #hellas_polys, #romawest_polys, #romaeast_polys, #romaisles_polys, #romamain_polys, #osthoj_polys, #valland_polys, #bedoamt_polys, #kmt_polys, #assyria_polys, #babylonia_polys, #phoenicia_polys { position: absolute; z-index: 3; width: 720px; height: 560px; top: 0; left: 0; pointer-events: auto; }
 svg polygon { pointer-events: fill; fill: transparent; }
@@ -717,6 +717,7 @@ margin: -555px 0 0 -343px; }
 <!---------------------- PROVINCIAL INFO CONTENT ---------------------->
 
 
+<div id="info_box_bdr">
 
 <div id="mct_dalrgata" class="mapcontent">
 <table class="tblheader"><tr><td class="tblhead top" width="300px"><b>Alaca Hoyuk</b><div style="float:right; margin:2px 0px 0px 0px;"><a href="/board/832" style="border:0px;"><img src="//storage.forums.net/7040057/images/xDqjiUnfXGfcrMLVqMRC.png" style="animation: rightbounce 3s; animation-iteration-count: infinite;"></a></div></td><td class="tblhead tblheadimg brdimg832"></td></tr></table>
@@ -727,4 +728,6 @@ margin: -555px 0 0 -343px; }
 <tr><td class="tblhead">Main Export</td><td><b>Gold and jewel work</b></td></tr>
 <tr><td class="tblhead">Sub-Export</td><td>Faience, glassware, sculpture, pottery.</td></tr></table></div>
 
+</div>
+  
 </div>
