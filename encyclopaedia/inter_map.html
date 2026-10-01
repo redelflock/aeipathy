@@ -1,0 +1,1323 @@
+<style>
+#loginimg { display:none; }
+
+/* =========== PROVINCE INFO BOXES =========== */
+.mapcontent_move { position:absolute; margin:-308px 0px 0px 45px; }
+.mapcontent { font-family: 'Montserrat', sans-serif; font-size:14px; line-height:144%; border-radius:5px; border:1px solid #cccccc; background-color:#fcfcfc; padding:10px; width:420px; position:absolute; display:none; }
+.mapcontent u, .mapcontent span { display:block; margin-top:60px; font-family: 'cardo', serif; font-size:22px; text-transform:uppercase; border:0px; padding:0px; }
+.mapcontent b, .mapcontent .tblhead, .mapcontent table td, .mapcontent a { border:0px; font-weight:500; font-family: 'Poppins', sans-serif; font-size:14px; font-style:inherit; }
+.mapcontent b { color:#d18400; }
+.mapcontent .tblhead { border-radius:0px; font-style:italic; padding:5px 11px 4px 10px; text-align:left; min-width:112px; border: 1px solid #dddddd; background-color: #f9f9f9; text-transform:none; text-shadow: -1px -1px 0 #fcfcfc, 1px -1px 0 #fcfcfc, -1px 1px 0 #fcfcfc, 1px 1px 0 #fcfcfc; }
+.mapcontent table td { text-align: left; font-weight:400; font-size:13px; padding:5px 11px 4px 10px; text-transform:none; }
+.mapcontent .tblheadimg { width:160px; background-size: auto 120%; background-position: center center; background-repeat:no-repeat; }
+.mapcontent .tblheader { display:block; position:relative; margin-bottom:6px;}
+
+/* =========== NAVIGATION BAR =========== */
+.map_nav { width:720px; padding:8px 0px 7px 0px; color:#444444; border:1px solid #cccccc; background-color:#fefefe; text-transform:uppercase; font-family:'cardo',serif; line-height:100%; font-size:10px; margin-bottom:14px; }
+.map_nav .map_nav1 { background-color:#f1f1f1; color:#000000; padding:8px 20px 7px 20px; position:absolute; margin:-8px 0px 0px 0px; border-right:1px solid #cccccc; display:inline; }
+.map_nav .mn { padding:0px 10px 0px 10px; display:none; }
+.map_nav .mn.mn_buffer { display:inline-block; width:100px; }
+
+/* =========== MAP BOX / CONTAINER =========== */
+#map_box_bdr { position: relative; border: 1px solid #ccc; width: 720px; height: 560px; overflow: hidden; }
+#map_box { position: relative; width: 720px; height: 560px; background-image: url('//storage.forums.net/7040057/images/ElgkjrwIBGUNuyxwTKYI.png'); background-size: 720px 560px; background-repeat: no-repeat; background-position: 0px 0px; transition: width 0.6s ease, height 0.6s ease, margin 0.6s ease, background-size 0.6s ease; }
+#realm_polys, #aegeas_polys, #europa_polys, #ostjord_polys, #sahra_polys, #sharqaan_polys, #hattusa_polys, #hellas_polys, #romawest_polys, #romaeast_polys, #romaisles_polys, #romamain_polys, #osthoj_polys, #valland_polys, #bedoamt_polys, #kmt_polys, #assyria_polys, #babylonia_polys, #phoenicia_polys { position: absolute; z-index: 3; width: 720px; height: 560px; top: 0; left: 0; pointer-events: auto; }
+svg polygon { pointer-events: fill; fill: transparent; }
+svg polygon:hover { cursor: pointer; }
+.highlight_layer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-repeat: no-repeat; background-position: 0px 0px; background-size: 100% 100%; pointer-events: none; z-index: 1; opacity: 0; filter: grayscale(0%); margin: 0px; -webkit-transition: 0.6s ease; -moz-transition: 0.6s ease; transition: 0.6s ease; }
+.highlight_layer.visible { opacity: 1; -webkit-transition: 0.3s ease; -moz-transition: 0.3s ease; transition: 0.3s ease; }
+
+/* =========== ZOOMS / BACKGROUND IMAGES =========== */
+
+/* == AEGEAS == */
+#map_box.aegeas { background-image: url('//storage.forums.net/7040057/images/XcTBsUUyaHX0qADXINNw.png');
+background-size: 1760px 1369px; width: 1760px; height: 1369px;
+margin: -566px 0 0 -850px; }
+#map_box.hattusa { background-image:url('//storage.forums.net/7040057/images/viooXRIOzzYulep0KWsI.png');
+background-size: 2000px 1556px; width: 2000px; height: 1556px;
+margin: -780px 0 0 -1080px; }
+#map_box.hellas { background-image:url('//storage.forums.net/7040057/images/kBERVaNwrmAaKoJIMaiu.png');
+background-size: 3300px 2567px; width: 3300px; height: 2567px;
+margin: -1340px 0 0 -1480px; }
+#map_box.athenia { background-image:url('//storage.forums.net/7040057/images/uDaH00Ja0McTMbPyoxIr.png');
+background-size: 3300px 2567px; width: 3300px; height: 2567px;
+margin: -1340px 0 0 -1480px; }
+#map_box.colchis { background-image:url('//storage.forums.net/7040057/images/qjLsWoABmrGdSRFsupHm.png');
+background-size: 3300px 2567px; width: 3300px; height: 2567px;
+margin: -1340px 0 0 -1480px; }
+#map_box.taengea { background-image:url('//storage.forums.net/7040057/images/EbAQvrMvjMqSuxMOtZWT.png');
+background-size: 3300px 2567px; width: 3300px; height: 2567px;
+margin: -1340px 0 0 -1480px; }
+
+/* == OSTJORD == */
+#map_box.ostjord { background-image: url('//storage.forums.net/7040057/images/msRbgDYVb0ydXemSJpjw.png');
+background-size: 1350px 1050px; width: 1350px; height: 1050px;
+margin: 0 0 0 -160px; }
+#map_box.osthoj { background-image:url('//storage.forums.net/7040057/images/LjPFmy0EVgvNGRByCfKo.png');
+background-size: 2230px 1734px; width: 2230px; height: 1734px;
+margin: 0 0 0 -320px; }
+#map_box.valland { background-image:url('//storage.forums.net/7040057/images/LVvnufoMJSbmyFbtsULm.png');
+background-size: 1350px 1050px; width: 1350px; height: 1050px;
+margin: -80px 0 0 -160px; }
+
+/* == SAHRA == */
+#map_box.sahra { background-image: url('//storage.forums.net/7040057/images/KAGGQURsQb0YGFkeppvX.png');
+background-size: 1050px 817px; width: 1050px; height: 817px;
+margin: -256px 0 0 -120px; }
+#map_box.bedoamt { background-image:url('//storage.forums.net/7040057/images/JuZkEaAeCYiOiQwxblAF.png');
+background-size: 1250px 972px; width: 1250px; height: 972px;
+margin: -410px 0 0 -140px; }
+#map_box.kmt { background-image:url('//storage.forums.net/7040057/images/LiJex0WoWiPnwVZDgxzr.png');
+background-size: 3300px 2567px; width: 3300px; height: 2567px;
+margin: -2006px 0 0 -1750px; }
+
+/* == SHARQAAN == */
+#map_box.sharqaan { background-image: url('//storage.forums.net/7040057/images/J0oGjFnkcesbfSVNUZTQ.png');
+background-size: 1900px 1478px; width: 1900px; height: 1478px;
+margin: -820px 0 0 -1181px; }
+#map_box.assyria { background-image:url('//storage.forums.net/7040057/images/hplsbp0ljlMlPEIjdqVt.png');
+background-size: 2600px 2022px; width: 2600px; height: 2022px;
+margin: -1200px 0 0 -1700px; }
+#map_box.babylonia { background-image:url('//storage.forums.net/7040057/images/PdxUweTMFGoxAGAZOwtN.png');
+background-size: 2800px 2178px; width: 2800px; height: 2178px;
+margin: -1380px 0 0 -2080px; }
+#map_box.phoenicia { background-image:url('//storage.forums.net/7040057/images/XJdmyE0TDImhSSYEbwYH.png');
+background-size: 3800px 2956px; width: 3800px; height: 2956px;
+margin: -2150px 0 0 -2280px; }
+
+/* == ROMA == */
+#map_box.europa1, #map_box.europa2, #map_box.europa3, #map_box.europa4 { background-image: url('//storage.forums.net/7040057/images/zeooRG0CQXMSOAOXErBn.png');
+background-size: 1560px 1213px; width: 1560px; height: 1213px;
+margin: -342px 0 0 -163px; }
+#map_box.romawest { background-image:url('//storage.forums.net/7040057/images/EhmKYJhZKzlNNSlD0frK.png');
+background-size: 3800px 2956px; width: 3800px; height: 2956px;
+margin: -1412px 0 0 -440px; }
+#map_box.romaeast { background-image:url('//storage.forums.net/7040057/images/kXaTUosIrESAblKdCMhy.png');
+background-size: 4600px 3578px; width: 4600px; height: 3578px;
+margin: -1850px 0 0 -1780px; }
+#map_box.romaisles { background-image:url('//storage.forums.net/7040057/images/HFoVf0HwcSAHrbzKMexb.png');
+background-size: 4000px 3111px; width: 4000px; height: 3111px;
+margin: -1450px 0 0 -1090px; }
+#map_box.romamain { background-image:url('//storage.forums.net/7040057/images/SnOdGyJSZjFvPiLvlgUM.png');
+background-size: 2100px 1633px; width: 2100px; height: 1633px;
+margin: -555px 0 0 -343px; }
+
+
+/* =========== HIGHLIGHT IMAGES =========== */
+#highlight_aegeas { background-image: url('//storage.forums.net/7040057/images/GQlulXbIbmuqMCMZwaXX.png'); }
+#highlight_europa1, #highlight_europa2, #highlight_europa3, #highlight_europa4 { background-image: url('//storage.forums.net/7040057/images/KQtQSFhpwiJrYGqHuRhC.png'); }
+#highlight_ostjord { background-image: url('//storage.forums.net/7040057/images/ndsLHZmTzBKBCnOuJnrZ.png'); }
+#highlight_sahra { background-image: url('//storage.forums.net/7040057/images/TOmhyJmjkQiuSrzVm0wi.png'); }
+#highlight_sharqaan { background-image: url('//storage.forums.net/7040057/images/ruLUHDSHUGNnAkFMzY0q.png'); }
+
+#highlight_assyria { background-image: url('//storage.forums.net/7040057/images/SOcz0RRszjkLekJzMfag.png'); }
+#highlight_babylonia { background-image: url('//storage.forums.net/7040057/images/AMDhMtZHGrIODznliHcH.png'); }
+#highlight_bedoamt { background-image: url('//storage.forums.net/7040057/images/uwSZqTcyzmEfBOcsHDNw.png'); }
+#highlight_hattusa { background-image: url('//storage.forums.net/7040057/images/SwVWHF0icPkvJvbikBnY.png'); }
+#highlight_hellas { background-image: url('//storage.forums.net/7040057/images/cIXDnjQSAeigucZasbbM.png'); }
+#highlight_kmt { background-image: url('//storage.forums.net/7040057/images/kZQ0JHIEreCQssfTsKOd.png'); }
+#highlight_osthoj { background-image: url('//storage.forums.net/7040057/images/IsieZapAMyINPitHqQB0.png'); }
+#highlight_valland { background-image: url('//storage.forums.net/7040057/images/TlYKdQusmIsWIYCYKjbc.png'); }
+#highlight_phoenicia { background-image: url('//storage.forums.net/7040057/images/DpmnDWOwcSR0IhfCQsuF.png'); }
+#highlight_romamain { background-image: url('//storage.forums.net/7040057/images/tUsxLeeCRdGJGIBmA0Pr.png'); }
+#highlight_romawest { background-image: url('//storage.forums.net/7040057/images/UHfrpkdOSOoXXiJjItzN.png'); }
+#highlight_romaeast { background-image: url('//storage.forums.net/7040057/images/QUMLXYpvMkDsjnQWeWkz.png'); }
+#highlight_romaisles { background-image: url('//storage.forums.net/7040057/images/ydFxegojPVZMXqUIUsTF.png'); }
+
+#highlight_athenia { background-image: url('//storage.forums.net/7040057/images/rfgvvPaskUlkfvkabfvp.png'); }
+#highlight_colchis { background-image: url('//storage.forums.net/7040057/images/ALZSAdGfQQAScpMucaTc.png'); }
+#highlight_taengea { background-image: url('//storage.forums.net/7040057/images/P0pxkkbddUiBGowOWxCH.png'); }
+#highlight_northernlands { background-image: url('//storage.forums.net/7040057/images/vwKtEbqeMrNXPTNjRuhQ.png'); }
+
+#highlight_alacahoyuk { background-image: url('//storage.forums.net/7040057/images/vzsNqaBNUxucAtKyPGve.png'); }
+#highlight_alinna { background-image: url('//storage.forums.net/7040057/images/lJEfEPOyhVejsoOoPjGi.png'); }
+#highlight_ankuwa { background-image: url('//storage.forums.net/7040057/images/jRmGmesElAwp0ZHHpIFL.png'); }
+#highlight_arzawa { background-image: url('//storage.forums.net/7040057/images/PKBdyEvjaLfACrZmSCtY.png'); }
+#highlight_atuna { background-image: url('//storage.forums.net/7040057/images/cnvBDxokfRHgZDYbkMfx.png'); }
+#highlight_carchemish { background-image: url('//storage.forums.net/7040057/images/xJrWyJoLRGOdmBKbCjPm.png'); }
+#highlight_hattusacity { background-image: url('//storage.forums.net/7040057/images/SyVRSLnKfrKUzGHMfzSZ.png'); }
+#highlight_kanesh { background-image: url('//storage.forums.net/7040057/images/Jdu0ZAivRpTDbYjPWTAq.png'); }
+#highlight_karatepe { background-image: url('//storage.forums.net/7040057/images/omxHXVSqxNDWRAzrnDKX.png'); }
+#highlight_kizzuwatna { background-image: url('//storage.forums.net/7040057/images/WTRcuOLIEaoZnAiHjPPi.png'); }
+#highlight_nerik { background-image: url('//storage.forums.net/7040057/images/ClItlsbDqTLIPlmFkIwU.png'); }
+#highlight_samuha { background-image: url('//storage.forums.net/7040057/images/YKok0iJeHBVrzg0Psitl.png'); }
+#highlight_sapinuwa { background-image: url('//storage.forums.net/7040057/images/YgFFRkEKcKnSheUbiDyz.png'); }
+#highlight_tynna { background-image: url('//storage.forums.net/7040057/images/JbsJrMumhRYIwwYVMdfe.png'); }
+#highlight_usakihoyuk { background-image: url('//storage.forums.net/7040057/images/zTkpUXntQMnMQbNcYfnP.png'); }
+
+#highlight_cordova { background-image: url('//storage.forums.net/7040057/images/FZLMsHwuhbvvd0lrMukz.png'); }
+#highlight_arisam { background-image: url('//storage.forums.net/7040057/images/hyxVTfLpPnMgyiTvCwMA.png'); }
+#highlight_luca { background-image: url('//storage.forums.net/7040057/images/bggOkMPt0mShHXRITCXl.png'); }
+#highlight_castile { background-image: url('//storage.forums.net/7040057/images/SEukjjyMywsTvxNekTDf.png'); }
+#highlight_cartagena { background-image: url('//storage.forums.net/7040057/images/jDmuAa0lizGmUgqyYium.png'); }
+#highlight_valencia { background-image: url('//storage.forums.net/7040057/images/JdJqVuBgLDU0HVRmUaSa.png'); }
+#highlight_tancona { background-image: url('//storage.forums.net/7040057/images/upqOWQGgkUyIDYtiAMGd.png'); }
+
+#highlight_illyrica { background-image: url('//storage.forums.net/7040057/images/MtFQNd0ZddC0WLkenBXB.png'); }
+#highlight_salonae { background-image: url('//storage.forums.net/7040057/images/KXLpYpqimPCQpwPmeWPg.png'); }
+
+#highlight_mariana { background-image: url('//storage.forums.net/7040057/images/LlbTkJokTkqlirWwDeyE.png'); }
+#highlight_aleria { background-image: url('//storage.forums.net/7040057/images/mJEmBjjbQybsjeRUWcwT.png'); }
+#highlight_oblia { background-image: url('//storage.forums.net/7040057/images/IWpSOVbBgKSPCqCtIJui.png'); }
+#highlight_caralis { background-image: url('//storage.forums.net/7040057/images/dwHZorCIQCPXfJ0IKlfC.png'); }
+#highlight_sardon { background-image: url('//storage.forums.net/7040057/images/LskelSTYykuJVsVUQMBp.png'); }
+
+#highlight_harpi { background-image: url('//storage.forums.net/7040057/images/bjZuofOhilPvyEGkAybl.png'); }
+#highlight_parma { background-image: url('//storage.forums.net/7040057/images/eIIR0btHNrTutJudEOvi.png'); }
+#highlight_mutina { background-image: url('//storage.forums.net/7040057/images/nClRyrKCrJqYupSwAERl.png'); }
+#highlight_ravenna { background-image: url('//storage.forums.net/7040057/images/epuNfudcGHycGC0W0HEr.png'); }
+#highlight_venici { background-image: url('//storage.forums.net/7040057/images/AtinEqgDNyVxVmZnaVLS.png'); }
+#highlight_verona { background-image: url('//storage.forums.net/7040057/images/wmgJqYVWMblMnwIqdEhL.png'); }
+#highlight_macenni { background-image: url('//storage.forums.net/7040057/images/PqmSnEONkptyWlXlljfJ.png'); }
+#highlight_pisae { background-image: url('//storage.forums.net/7040057/images/HukJvc0TkaFxDJfdnetF.png'); }
+#highlight_arretium { background-image: url('//storage.forums.net/7040057/images/pZmulzIEKdnpJQPPdo0O.png'); }
+#highlight_etrus { background-image: url('//storage.forums.net/7040057/images/YswUSSSsvMiILyHxDHrr.png'); }
+#highlight_perusia { background-image: url('//storage.forums.net/7040057/images/GfVtXRsmZQqb0L0dgGNo.png'); }
+#highlight_saculum { background-image: url('//storage.forums.net/7040057/images/AYXKuGuodRRffBxYWGEF.png'); }
+#highlight_solsinii { background-image: url('//storage.forums.net/7040057/images/LDVVKeWLszvavxdaLScr.png'); }
+#highlight_reate { background-image: url('//storage.forums.net/7040057/images/HivZ0ZfyXOvHUKHktWIY.png'); }
+#highlight_urbsroma { background-image: url('//storage.forums.net/7040057/images/xGrnNjbTxcgQVZTswdxZ.png'); }
+#highlight_ostia { background-image: url('//storage.forums.net/7040057/images/kUCJxeOYiVERuZfptHBK.png'); }
+#highlight_oltarum { background-image: url('//storage.forums.net/7040057/images/vbpjSEbnJTdEVeoUTBBk.png'); }
+#highlight_ardea { background-image: url('//storage.forums.net/7040057/images/APyfaCUWrGPYZkEaTpKS.png'); }
+#highlight_frentaani { background-image: url('//storage.forums.net/7040057/images/IVnakigUhgUiqzOKZXYu.png'); }
+#highlight_aesernia { background-image: url('//storage.forums.net/7040057/images/vTydAJUdBiOq0JUIRMM0.png'); }
+#highlight_capua { background-image: url('//storage.forums.net/7040057/images/HJVYLBMgIxbMauPyULqp.png'); }
+#highlight_luceria { background-image: url('//storage.forums.net/7040057/images/uBvxjkGYglseCA0lOmrx.png'); }
+#highlight_sipontumi { background-image: url('//storage.forums.net/7040057/images/dfVxpBFjEuPzxYPqa0kQ.png'); }
+#highlight_neapolis { background-image: url('//storage.forums.net/7040057/images/vUOjCtxBNighnWIZXsPX.png'); }
+#highlight_nola { background-image: url('//storage.forums.net/7040057/images/JQNuQVNlyGWgkGgLTAo0.png'); }
+#highlight_paesia { background-image: url('//storage.forums.net/7040057/images/fexFVNvitjqboQkYfPQV.png'); }
+#highlight_brundis { background-image: url('//storage.forums.net/7040057/images/KatF0dojETgvKEJswAaE.png'); }
+#highlight_tarentium { background-image: url('//storage.forums.net/7040057/images/WGhXMKwcZpsCLyQTqPeT.png'); }
+#highlight_metapontum { background-image: url('//storage.forums.net/7040057/images/eLWOTVmlHwzRAUuiseXY.png'); }
+#highlight_thurion { background-image: url('//storage.forums.net/7040057/images/q0WqywKfUizCl0ivYxOI.png'); }
+#highlight_molcena { background-image: url('//storage.forums.net/7040057/images/FlwDyNIBnIAAnfhZbcjC.png'); }
+#highlight_lycri { background-image: url('//storage.forums.net/7040057/images/GHqqpbuuIgXKb0tGKEQx.png'); }
+#highlight_syracuse { background-image: url('//storage.forums.net/7040057/images/kmIKkGMpwQbasDBflMat.png'); }
+#highlight_lilbaeum { background-image: url('//storage.forums.net/7040057/images/cRAYYBGToXkkwXNFboAD.png'); }
+
+#highlight_kaldrtoft { background-image: url('//storage.forums.net/7040057/images/bhGzKkwrcwoSGPgrnWeP.png'); }
+#highlight_trausttoft { background-image: url('//storage.forums.net/7040057/images/aTdeiZh0GhMuPwLliWkz.png'); }
+#highlight_gardasbru { background-image: url('//storage.forums.net/7040057/images/jTOfSByeAPtQEXAFQpBy.png'); }
+#highlight_dalrgata { background-image: url('//storage.forums.net/7040057/images/IEEqQTHulIicfTSfpYIO.png'); }
+#highlight_steinnvik { background-image: url('//storage.forums.net/7040057/images/wJOnVKCMZUJpyXWWZQnP.png'); }
+#highlight_breidrbekk { background-image: url('//storage.forums.net/7040057/images/eFyPYtYBqEOaiLlHQ0QL.png'); }
+#highlight_husnesklif { background-image: url('//storage.forums.net/7040057/images/CAbifTsKZeliygAicLoX.png'); }
+#highlight_tiwsborg { background-image: url('//storage.forums.net/7040057/images/RMKAtmGGoAnNhoymNKnN.png'); }
+#highlight_hlidskjalfsalr { background-image: url('//storage.forums.net/7040057/images/SBGlrgmfKvuFcdnzRxCN.png'); }
+
+#highlight_holmbrekka { background-image: url('//storage.forums.net/7040057/images/NfroDhPtrNWuQFWrsQF0.png'); }
+#highlight_raudrvangr { background-image: url('//storage.forums.net/7040057/images/aLooDYHDAe0ftZOyKTcu.png'); }
+#highlight_groennvangr { background-image: url('//storage.forums.net/7040057/images/dMzKpukJeCYtwEfYfppt.png'); }
+#highlight_brokknyroft { background-image: url('//storage.forums.net/7040057/images/AIqFnqhiZnZJJMjxcYyC.png'); }
+#highlight_beodricsworth { background-image: url('//storage.forums.net/7040057/images/ST0XFRcwmJFwGEGdZurg.png'); }
+#highlight_nosudrom { background-image: url('//storage.forums.net/7040057/images/exQCmLbjoRQDgbGrHfzz.png'); }
+
+#highlight_portofthewest { background-image: url('//storage.forums.net/7040057/images/hOUhdMyQYZjDIdDHJGTu.png'); }
+#highlight_amnsharoasis { background-image: url('//storage.forums.net/7040057/images/WZyLZKRp0yyDpkYNvNuu.png'); }
+#highlight_oorsprong { background-image: url('//storage.forums.net/7040057/images/CyKpgWoadSBPNpLyVyOZ.png'); }
+
+#highlight_alexandria { background-image: url('//storage.forums.net/7040057/images/0mnVGPuFruzbkqHIdLlG.png'); }
+#highlight_bubastis { background-image: url('//storage.forums.net/7040057/images/UtbvXydvbFXkqCBAGmpu.png'); }
+#highlight_cairo { background-image: url('//storage.forums.net/7040057/images/yWQrcxQbQvlqPiFJMDgE.png'); }
+#highlight_giza { background-image: url('//storage.forums.net/7040057/images/m0AIAEhKUQnoqhr0JAEX.png'); }
+#highlight_itsmalia { background-image: url('//storage.forums.net/7040057/images/IBkqtIpOYmXbetpvyNjH.png'); }
+#highlight_kafrelibsa { background-image: url('//storage.forums.net/7040057/images/IVrKCNAMG0kokrswCSfo.png'); }
+#highlight_kilwa { background-image: url('//storage.forums.net/7040057/images/wRhHRnZ0sQqziUpgnE0A.png'); }
+#highlight_kumut { background-image: url('//storage.forums.net/7040057/images/LwKCMExvDyJ0xYQGxgIf.png'); }
+#highlight_lungwa { background-image: url('//storage.forums.net/7040057/images/sCovlJ0DrgfobEdyLgiM.png'); }
+#highlight_manopotapa { background-image: url('//storage.forums.net/7040057/images/FpaYejSZJLsCpieIevRI.png'); }
+#highlight_memphis { background-image: url('//storage.forums.net/7040057/images/spGHoqnISF0RTrtoRUMp.png'); }
+#highlight_mendes { background-image: url('//storage.forums.net/7040057/images/UdyEblzfMljILwAZhQCm.png'); }
+#highlight_momborah { background-image: url('//storage.forums.net/7040057/images/VltOJmdZodgwTcmAeptB.png'); }
+#highlight_nabdorah { background-image: url('//storage.forums.net/7040057/images/qoyYioEZvSduIevUPOqC.png'); }
+#highlight_qusetta { background-image: url('//storage.forums.net/7040057/images/pjqcbHUoltjxEQKslewU.png'); }
+#highlight_sais { background-image: url('//storage.forums.net/7040057/images/mdgUFBDdTNbYerzHZSTw.png'); }
+#highlight_sotte { background-image: url('//storage.forums.net/7040057/images/GbRvjzpAXsmJOCaZUhRx.png'); }
+#highlight_talutt { background-image: url('//storage.forums.net/7040057/images/zjYAyljFnKzijCHfl0BB.png'); }
+#highlight_zanzibar { background-image: url('//storage.forums.net/7040057/images/ptrWvPGLPQZWjMLLaOor.png'); }
+#highlight_elminya { background-image: url('//storage.forums.net/7040057/images/FfpllByZMUrTBsvdkLuu.png'); }
+#highlight_luxfa { background-image: url('//storage.forums.net/7040057/images/YiNSyzyFLtSXKrpombTD.png'); }
+#highlight_mansa { background-image: url('//storage.forums.net/7040057/images/0cDEvwbOPXuAaUnmUjMp.png'); }
+#highlight_qalha { background-image: url('//storage.forums.net/7040057/images/jsIdfrXKnMygCbXcLnSM.png'); }
+#highlight_rofah { background-image: url('//storage.forums.net/7040057/images/eEVpIKuEtuTAbxoAAEEz.png'); }
+#highlight_shedet { background-image: url('//storage.forums.net/7040057/images/kPPSEMmylcFl0aDsiQuU.png'); }
+#highlight_thebes { background-image: url('//storage.forums.net/7040057/images/dqFLFYZwcpZbtvN0rRtP.png'); }
+#highlight_aksum { background-image: url('//storage.forums.net/7040057/images/gETTLDaUBptMmgzIZQuD.png'); }
+#highlight_anum { background-image: url('//storage.forums.net/7040057/images/TBucoAqyAwXWSQFnpqhR.png'); }
+#highlight_benin { background-image: url('//storage.forums.net/7040057/images/LZMltcxuncZsUZTiphek.png'); }
+#highlight_edwa { background-image: url('//storage.forums.net/7040057/images/ckfSyjPwrrWUkeahrlZT.png'); }
+#highlight_eldaihab { background-image: url('//storage.forums.net/7040057/images/XjCHOREjfJjWqhszmszB.png'); }
+#highlight_kabwe { background-image: url('//storage.forums.net/7040057/images/ueXSrYDTKQZWfnvmcPlU.png'); }
+#highlight_kudos { background-image: url('//storage.forums.net/7040057/images/ZFcBwwUDnFjYRFIVoCQU.png'); }
+#highlight_kumaan { background-image: url('//storage.forums.net/7040057/images/JephtVFBkcxMzzqLjods.png'); }
+#highlight_malimasi { background-image: url('//storage.forums.net/7040057/images/kfvFCGlCiIY0OXjIRYkD.png'); }
+#highlight_mirsaelnasr { background-image: url('//storage.forums.net/7040057/images/SSFuzQklXMALogWQlJQi.png'); }
+#highlight_naqmis { background-image: url('//storage.forums.net/7040057/images/IJTEwi0SbCGVZXpVrvLr.png'); }
+#highlight_obsor { background-image: url('//storage.forums.net/7040057/images/snqkgWHFhUZxyqJHRtdj.png'); }
+#highlight_rassufaga { background-image: url('//storage.forums.net/7040057/images/DaAtxvLAtrkjgAscAvJB.png'); }
+#highlight_wadeltalke { background-image: url('//storage.forums.net/7040057/images/zYnCfTaPNezTpmInHhdL.png'); }
+#highlight_zefta { background-image: url('//storage.forums.net/7040057/images/FEqxsfHpUyxOlqebcuFy.png'); }
+
+#highlight_mitanni { background-image: url('//storage.forums.net/7040057/images/IcOmwsqcKCcwSKasxsdv.png'); }
+#highlight_nasibina { background-image: url('//storage.forums.net/7040057/images/dDOEggAB0RZFnXjxPNKu.png'); }
+#highlight_tushpa { background-image: url('//storage.forums.net/7040057/images/tXMwABgXsyFV00gGnpQx.png'); }
+#highlight_kalhu { background-image: url('//storage.forums.net/7040057/images/OCzvQeEbacXdBLT0OEZM.png'); }
+#highlight_ninuwa { background-image: url('//storage.forums.net/7040057/images/tBamaKdVTkbf0rxWoQWp.png'); }
+#highlight_haran { background-image: url('//storage.forums.net/7040057/images/onmyBQpirTeBiEhtfWxw.png'); }
+#highlight_assur { background-image: url('//storage.forums.net/7040057/images/ZLuPhyNwVoQcXwCfbZxT.png'); }
+#highlight_arrapkha { background-image: url('//storage.forums.net/7040057/images/kbPgBNmQRbNOvUJNiWOE.png'); }
+#highlight_aleppo { background-image: url('//storage.forums.net/7040057/images/pnocnhMju0XtSiBwMmJh.png'); }
+#highlight_rezeph { background-image: url('//storage.forums.net/7040057/images/UdnpOTTPqsNqRDfHvEFt.png'); }
+#highlight_sidon { background-image: url('//storage.forums.net/7040057/images/ceqNvZPIjrZvbPdwDoiY.png'); }
+#highlight_terqa { background-image: url('//storage.forums.net/7040057/images/TISVbAykl0gwwzLaAYFV.png'); }
+
+#highlight_durkurigalzu { background-image: url('//storage.forums.net/7040057/images/cXsPrLddBABzBtmXDTOa.png'); }
+#highlight_babylon { background-image: url('//storage.forums.net/7040057/images/tqMVawfEihFWLYoaTCkd.png'); }
+#highlight_sippar { background-image: url('//storage.forums.net/7040057/images/GLwVgQLdSzbGAV0lHbKJ.png'); }
+#highlight_uruk { background-image: url('//storage.forums.net/7040057/images/HqanZVEkdCMWPkylDtEf.png'); }
+#highlight_portofkissik { background-image: url('//storage.forums.net/7040057/images/SjTATveWUhevsPLydpTL.png'); }
+
+#highlight_ammun { background-image: url('//storage.forums.net/7040057/images/McecqijipFHrDBmE0Rc0.png'); }
+#highlight_damascus { background-image: url('//storage.forums.net/7040057/images/ffpMQNEqPWabNHtMpghb.png'); }
+#highlight_israel { background-image: url('//storage.forums.net/7040057/images/EPDFoOpXcVJWNQmsnJfj.png'); }
+#highlight_jerusalem { background-image: url('//storage.forums.net/7040057/images/wBozsMqadyfXqWkYpYo0.png'); }
+#highlight_judah { background-image: url('//storage.forums.net/7040057/images/CsKZttuMjQSnLUqRgoXb.png'); }
+#highlight_moab { background-image: url('//storage.forums.net/7040057/images/WAtUNKEJYIJdUWGneEAC.png'); }
+
+</style>
+
+
+<div style="padding:30px;">
+<div class="map_nav">
+<div class="map_nav1">Navigation</div>
+<div class="mn mn_buffer"></div>
+<div class="mn mn1 mn_ostjord">Ostjord</div>
+<div class="mn mn2 mn_osthoj">Osthoj</div>
+<div class="mn mn3 mn_kaldrtoft">Kaldrtoft</div>
+<div class="mn mn3 mn_trausttoft">Trausttoft</div>
+<div class="mn mn3 mn_gardasbru">Gardasbru</div>
+<div class="mn mn3 mn_dalrgata">Dalrgata</div>
+<div class="mn mn3 mn_steinnvik">Steinnvik</div>
+<div class="mn mn3 mn_breidrbekk">Breidrbekk</div>
+<div class="mn mn3 mn_husnesklif">Husnesklif</div>
+<div class="mn mn3 mn_tiwsborg">Tiwsborg</div>
+<div class="mn mn3 mn_hlidskajalfsalr">Hlidskajalf Salr</div>
+</div>
+
+
+
+
+
+<div id="map_box_bdr">
+
+
+<!---------------------- POLY LAYERS ---------------------->
+
+<svg id="realm_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="aegeas" points="357,355 365,341 375,336 379,319 397,321 407,311 435,322 473,317 505,299 526,299 560,314 595,312 604,303 614,320 632,324 603,350 579,373 549,384 542,372 501,388 478,373 474,384 460,383 440,378 418,383 412,361 390,370 390,388 356,357"></polygon>
+<polygon id="europa1" points="110,317 130,314 127,326 122,340 126,348 158,331 172,329 175,334 160,342 139,348 115,359 109,350 101,332 110,327"></polygon>
+<polygon id="europa2" points="223,291 229,288 233,280 235,295 230,309 237,321 235,343 224,348 220,341 221,325 217,318 220,312 222,318 228,310 225,307"></polygon>
+<polygon id="europa3" points="273,204 306,199 313,190 310,207 303,210 315,212 290,226 297,253 283,256 279,241 267,247 269,254 265,258 269,268 281,276 284,287 298,300 310,302 307,308 338,327 336,335 320,322 313,335 323,343 307,362 301,360 298,368 299,379 267,362 275,355 282,360 305,354 310,345 305,332 264,303 269,296 255,276 263,272 260,255 264,242 273,234 278,225 283,221 280,216 273,217 269,214 274,211"></polygon>
+<polygon id="europa4" points="349,305 356,314 362,314 360,320 358,324 366,332 372,332 368,337 365,338 361,343 351,335 347,324"></polygon>
+<polygon id="ostjord" points="97,156 128,129 116,116 130,107 147,119 141,149 176,124 182,104 222,92 219,31 254,10 250,1 228,1 211,11 189,0 322,0 313,50 289,52 289,64 269,67 270,74 260,83 282,78 289,91 334,75 341,84 372,81 379,63 394,76 410,71 431,62 442,69 431,97 426,107 435,122 435,133 422,142 392,199 379,168 366,169 362,188 351,189 332,173 312,173 266,204 226,188 210,156 196,157 184,137 147,170 126,174 138,152"></polygon>
+<polygon id="sahra" points="104,399 143,380 240,372 253,375 245,389 252,397 246,410 238,416 268,434 277,432 302,442 304,451 330,460 342,467 357,460 354,444 363,434 378,431 411,446 414,452 421,450 462,461 482,449 491,452 499,458 507,457 507,469 503,482 498,471 500,487 534,547 535,560 433,560 448,542 445,529 438,521 421,537 397,541 373,534 354,541 336,541 308,527 300,533 300,543 282,551 242,544 222,524 202,532 178,514 155,519 135,509 120,476 124,455 144,419 135,402 119,405"></polygon>
+<polygon id="sharqaan" points="509,458 522,452 540,408 539,374 549,386 574,375 583,372 622,335 638,339 646,382 693,408 692,416 682,418 682,428 698,439 700,447 706,453 706,462 716,470 717,498 700,468 680,476 683,493 668,483 666,464 650,465 636,455 634,464 623,476 607,472 597,463 596,449 576,452 574,440 547,443 531,481 531,495 516,500 505,476 507,465"></polygon>
+</svg>
+
+<svg id="aegeas_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="hattusa" points="193,228 215,218 247,222 284,215 287,212 302,212 316,204 334,199 343,188 384,167 425,170 435,166 443,166 447,177 468,174 469,188 477,193 480,189 501,200 516,200 523,207 539,206 552,202 568,199 581,204 609,196 626,178 631,193 635,200 634,210 644,207 656,214 650,225 659,227 670,229 682,224 692,224 693,231 677,257 665,273 633,303 602,303 616,312 601,331 588,333 588,352 562,364 551,348 545,373 522,375 516,389 505,380 491,384 483,369 477,350 470,350 458,366 431,359 414,377 378,387 363,378 353,366 335,356 317,355 314,373 310,378 294,381 273,376 268,363 253,358 243,368 241,352 211,362 212,357 220,351 221,338 214,325 221,318 208,312 205,303 205,288 208,275 201,260 189,264 190,242"></polygon>
+<polygon id="hellas" points="82,216 111,223 145,197 164,207 162,217 192,229 175,262 173,292 206,321 213,337 211,349 199,364 185,376 143,359 101,384 57,352 55,332 38,329 24,308 31,271 45,270 50,276 62,264 66,237 73,222"></polygon>
+</svg>
+
+<svg id="europa_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="romawest" points="91,438 84,436 83,424 70,420 61,395 57,381 60,374 72,369 68,356 71,344 86,342 99,345 119,334 122,346 116,352 119,364 104,394 113,408 157,390 159,383 186,369 213,368 219,381 213,387 198,385 188,401 158,399 146,420 117,416"></polygon>
+<polygon id="romaeast" points="614,402 622,405 639,409 652,398 656,387 645,389 644,373 633,376 615,358 624,344 617,333 607,337 596,316 586,332 585,365 591,374 588,379 604,399"></polygon>
+<polygon id="romaisles" points="312,410 311,363 304,343 318,315 316,288 334,278 342,261 349,296 344,327 355,353 349,406 317,415"></polygon>
+<polygon id="romamain" points="418,426 454,430 496,423 496,412 506,409 494,378 407,319 405,276 385,255 403,248 396,206 410,177 444,136 417,127 428,108 425,100 503,84 515,68 517,84 510,108 524,120 470,145 467,158 483,204 450,219 437,187 421,193 425,231 449,253 464,284 486,305 513,309 510,325 567,356 573,372 563,387 532,364 524,380 539,397 538,414 507,446 492,453 489,485 472,484 412,449"></polygon>
+</svg>
+
+<svg id="ostjord_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="osthoj" points="195,191 230,200 255,219 285,230 324,233 338,226 329,216 314,204 315,191 337,182 364,181 382,173 370,142 387,119 396,101 413,104 434,93 446,46 448,0 312,0 324,49 302,26 280,35 276,48 251,56 242,86 250,170 203,185"></polygon>
+<polygon id="valland" points="183,196 212,203 232,211 260,229 302,239 334,237 345,225 327,207 318,197 334,187 368,183 392,170 419,160 437,143 474,138 479,146 477,155 537,149 536,140 554,115 572,124 576,138 596,140 609,127 623,128 630,127 654,116 676,135 659,155 659,174 640,194 642,208 659,224 657,247 631,270 605,336 584,368 577,382 564,361 548,337 552,325 535,320 525,333 528,353 512,362 492,359 486,343 469,340 459,329 430,330 400,357 384,354 375,365 361,366 344,387 333,387 328,364 283,372 258,356 242,321 229,299 205,300 191,280 181,265 159,298 115,325 76,327 62,315 93,292 44,291 57,273 89,240 67,212 104,204 128,228 159,231 173,202"></polygon>
+</svg>
+
+<svg id="sahra_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="bedoamt" points="501,400 517,424 512,446 514,459 524,501 494,529 457,534 413,522 402,533 373,535 325,516 320,540 298,551 256,548 222,537 203,519 177,525 137,501 116,505 79,498 49,433 63,389 84,353 71,337 43,336 30,320 88,292 200,284 231,280 254,290 244,308 256,323 241,349 271,369 308,376 337,397 380,419 391,410 391,385 423,368"></polygon>
+<polygon id="kmt" points="506,399 560,411 580,401 609,411 612,411 627,409 618,437 621,465 664,544 660,558 519,559 533,532 529,509 516,450 520,422"></polygon>
+</svg>
+
+<svg id="sharqaan_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="assyria" points="278,347 279,337 250,320 256,302 242,296 231,271 238,259 232,198 244,181 239,167 256,163 265,179 268,192 293,198 298,188 316,188 327,159 339,156 351,172 366,167 363,150 372,139 388,141 392,129 362,120 379,111 394,112 405,106 425,109 434,95 452,82 454,71 488,61 524,101 537,173 522,177 482,187 462,184 463,192 486,201 488,216 501,225 547,242 544,274 518,289 506,282 493,286 498,306 498,324 484,330 483,346 432,343 386,358 380,371 343,378 336,351 287,356"></polygon>
+<polygon id="babylonia" points="383,369 387,361 418,349 453,346 483,350 488,332 500,324 502,297 496,288 505,284 517,292 548,276 550,244 493,213 490,195 477,198 467,191 467,185 480,188 521,180 556,207 638,243 649,259 650,282 625,287 621,306 661,331 665,353 685,374 686,398 710,418 714,494 665,419 620,428 614,445 623,484 588,457 586,426 571,407 533,411 506,386 493,414 467,441 418,428 393,398 392,370"></polygon>
+<polygon id="phoenicia" points="190,506 149,455 149,410 169,377 190,373 231,275 240,299 253,304 247,322 276,338 276,350 265,383 249,397 231,449 238,485 199,498"></polygon>
+</svg>
+
+<svg id="hattusa_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="alacahoyuk" points="0,0 0,1"></polygon>
+<polygon id="alinna" points="0,0 0,1"></polygon>
+<polygon id="ankuwa" points="0,0 0,1"></polygon>
+<polygon id="arzawa" points="0,0 0,1"></polygon>
+<polygon id="atuna" points="0,0 0,1"></polygon>
+<polygon id="carchemish" points="0,0 0,1"></polygon>
+<polygon id="hattusacity" points="0,0 0,1"></polygon>
+<polygon id="kanesh" points="0,0 0,1"></polygon>
+<polygon id="karatepe" points="0,0 0,1"></polygon>
+<polygon id="kizzuwatna" points="0,0 0,1"></polygon>
+<polygon id="nerik" points="0,0 0,1"></polygon>
+<polygon id="samuha" points="0,0 0,1"></polygon>
+<polygon id="sapinuwa" points="0,0 0,1"></polygon>
+<polygon id="tynna" points="0,0 0,1"></polygon>
+<polygon id="usakihoyuk" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="hellas_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="athenia" points="0,0 0,1"></polygon>
+<polygon id="colchis" points="0,0 0,1"></polygon>
+<polygon id="taengea" points="0,0 0,1"></polygon>
+<polygon id="northernlands" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="romawest_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="cordova" points="0,0 0,1"></polygon>
+<polygon id="arisam" points="0,0 0,1"></polygon>
+<polygon id="luca" points="0,0 0,1"></polygon>
+<polygon id="castile" points="0,0 0,1"></polygon>
+<polygon id="cartagena" points="0,0 0,1"></polygon>
+<polygon id="valencia" points="0,0 0,1"></polygon>
+<polygon id="tancona" points="0,0 0,1"></polygon>
+</svg>
+<svg id="romaeast_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="illyrica" points="0,0 0,1"></polygon>
+<polygon id="salonae" points="0,0 0,1"></polygon>
+</svg>
+<svg id="romaisles_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="mariana" points="0,0 0,1"></polygon>
+<polygon id="aleria" points="0,0 0,1"></polygon>
+<polygon id="oblia" points="0,0 0,1"></polygon>
+<polygon id="caralis" points="0,0 0,1"></polygon>
+<polygon id="sardon" points="0,0 0,1"></polygon>
+</svg>
+<svg id="romamain_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="harpi" points="0,0 0,1"></polygon>
+<polygon id="parma" points="0,0 0,1"></polygon>
+<polygon id="mutina" points="0,0 0,1"></polygon>
+<polygon id="ravenna" points="0,0 0,1"></polygon>
+<polygon id="venici" points="0,0 0,1"></polygon>
+<polygon id="verona" points="0,0 0,1"></polygon>
+<polygon id="macenni" points="0,0 0,1"></polygon>
+<polygon id="pisae" points="0,0 0,1"></polygon>
+<polygon id="arretium" points="0,0 0,1"></polygon>
+<polygon id="etrus" points="0,0 0,1"></polygon>
+<polygon id="perusia" points="0,0 0,1"></polygon>
+<polygon id="saculum" points="0,0 0,1"></polygon>
+<polygon id="solsinii" points="0,0 0,1"></polygon>
+<polygon id="reate" points="0,0 0,1"></polygon>
+<polygon id="urbsroma" points="0,0 0,1"></polygon>
+<polygon id="ostia" points="0,0 0,1"></polygon>
+<polygon id="oltarum" points="0,0 0,1"></polygon>
+<polygon id="ardea" points="0,0 0,1"></polygon>
+<polygon id="frentaani" points="0,0 0,1"></polygon>
+<polygon id="aesernia" points="0,0 0,1"></polygon>
+<polygon id="capua" points="0,0 0,1"></polygon>
+<polygon id="luceria" points="0,0 0,1"></polygon>
+<polygon id="sipontumi" points="0,0 0,1"></polygon>
+<polygon id="neapolis" points="0,0 0,1"></polygon>
+<polygon id="nola" points="0,0 0,1"></polygon>
+<polygon id="paesia" points="0,0 0,1"></polygon>
+<polygon id="brundis" points="0,0 0,1"></polygon>
+<polygon id="tarentium" points="0,0 0,1"></polygon>
+<polygon id="metapontum" points="0,0 0,1"></polygon>
+<polygon id="thurion" points="0,0 0,1"></polygon>
+<polygon id="molcena" points="0,0 0,1"></polygon>
+<polygon id="lycri" points="0,0 0,1"></polygon>
+<polygon id="syracuse" points="0,0 0,1"></polygon>
+<polygon id="lilbaeum" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="osthoj_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="kaldrtoft" points="494,17 516,29 515,54 490,64 473,45 478,24"></polygon>
+<polygon id="trausttoft" points="433,51 451,68 445,98 419,103 399,83 409,58"></polygon>
+<polygon id="gardasbru" points="508,136 529,148 529,173 507,186 485,168 485,148"></polygon>
+<polygon id="dalrgata" points="623,29 642,45 642,69 621,80 600,69 600,41"></polygon>
+<polygon id="steinnvik" points="487,217 505,235 505,256 484,268 465,249 466,230"></polygon>
+<polygon id="breidrbekk" points="643,91 660,108 659,130 637,143 619,121 621,101"></polygon>
+<polygon id="husnesklif" points="365,274 387,306 368,320 348,306 348,288"></polygon>
+<polygon id="tiwsborg" points="391,260 409,278 407,303 388,306 372,380"></polygon>
+<polygon id="hlidskjalfsalr" points="391,145 408,162 405,187 380,194 364,173 371,150"></polygon>
+</svg>
+
+<svg id="valland_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="holmbrekka" points="0,0 0,1"></polygon>
+<polygon id="raudrvangr" points="0,0 0,1"></polygon>
+<polygon id="groennvangr" points="0,0 0,1"></polygon>
+<polygon id="brokknyroft" points="0,0 0,1"></polygon>
+<polygon id="beodricsworth" points="0,0 0,1"></polygon>
+<polygon id="nosudrom" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="bedoamt_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="portofthewest" points="0,0 0,1"></polygon>
+<polygon id="amnsharoasis" points="0,0 0,1"></polygon>
+<polygon id="oorsprong" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="kmt_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="alexandria" points="0,0 0,1"></polygon>
+<polygon id="bubastis" points="0,0 0,1"></polygon>
+<polygon id="cairo" points="0,0 0,1"></polygon>
+<polygon id="giza" points="0,0 0,1"></polygon>
+<polygon id="itsmalia" points="0,0 0,1"></polygon>
+<polygon id="kafrelibsa" points="0,0 0,1"></polygon>
+<polygon id="kilwa" points="0,0 0,1"></polygon>
+<polygon id="kumut" points="0,0 0,1"></polygon>
+<polygon id="lungwa" points="0,0 0,1"></polygon>
+<polygon id="manopotapa" points="0,0 0,1"></polygon>
+<polygon id="memphis" points="0,0 0,1"></polygon>
+<polygon id="mendes" points="0,0 0,1"></polygon>
+<polygon id="momborah" points="0,0 0,1"></polygon>
+<polygon id="nabdorah" points="0,0 0,1"></polygon>
+<polygon id="qusetta" points="0,0 0,1"></polygon>
+<polygon id="sais" points="0,0 0,1"></polygon>
+<polygon id="sotte" points="0,0 0,1"></polygon>
+<polygon id="talutt" points="0,0 0,1"></polygon>
+<polygon id="zanzibar" points="0,0 0,1"></polygon>
+<polygon id="elminya" points="0,0 0,1"></polygon>
+<polygon id="luxfa" points="0,0 0,1"></polygon>
+<polygon id="mansa" points="0,0 0,1"></polygon>
+<polygon id="qalha" points="0,0 0,1"></polygon>
+<polygon id="rofah" points="0,0 0,1"></polygon>
+<polygon id="shedet" points="0,0 0,1"></polygon>
+<polygon id="thebes" points="0,0 0,1"></polygon>
+<polygon id="aksum" points="0,0 0,1"></polygon>
+<polygon id="anum" points="0,0 0,1"></polygon>
+<polygon id="benin" points="0,0 0,1"></polygon>
+<polygon id="edwa" points="0,0 0,1"></polygon>
+<polygon id="eldaihab" points="0,0 0,1"></polygon>
+<polygon id="kabwe" points="0,0 0,1"></polygon>
+<polygon id="kudos" points="0,0 0,1"></polygon>
+<polygon id="kumaan" points="0,0 0,1"></polygon>
+<polygon id="malimasi" points="0,0 0,1"></polygon>
+<polygon id="mirsaelnasr" points="0,0 0,1"></polygon>
+<polygon id="naqmis" points="0,0 0,1"></polygon>
+<polygon id="obsor" points="0,0 0,1"></polygon>
+<polygon id="rassufaga" points="0,0 0,1"></polygon>
+<polygon id="wadeltalke" points="0,0 0,1"></polygon>
+<polygon id="zefta" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="assyria_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="mitanni" points="0,0 0,1"></polygon>
+<polygon id="nasibina" points="0,0 0,1"></polygon>
+<polygon id="tushpa" points="0,0 0,1"></polygon>
+<polygon id="kalhu" points="0,0 0,1"></polygon>
+<polygon id="ninuwa" points="0,0 0,1"></polygon>
+<polygon id="haran" points="0,0 0,1"></polygon>
+<polygon id="assur" points="0,0 0,1"></polygon>
+<polygon id="arrapkha" points="0,0 0,1"></polygon>
+<polygon id="aleppo" points="0,0 0,1"></polygon>
+<polygon id="rezeph" points="0,0 0,1"></polygon>
+<polygon id="sidon" points="0,0 0,1"></polygon>
+<polygon id="terqa" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="babylonia_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="durkurigalzu" points="0,0 0,1"></polygon>
+<polygon id="babylon" points="0,0 0,1"></polygon>
+<polygon id="sippar" points="0,0 0,1"></polygon>
+<polygon id="uruk" points="0,0 0,1"></polygon>
+<polygon id="portofkissik" points="0,0 0,1"></polygon>
+</svg>
+
+<svg id="phoenicia_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<polygon id="ammun" points="0,0 0,1"></polygon>
+<polygon id="damascus" points="0,0 0,1"></polygon>
+<polygon id="israel" points="0,0 0,1"></polygon>
+<polygon id="jerusalem" points="0,0 0,1"></polygon>
+<polygon id="judah" points="0,0 0,1"></polygon>
+<polygon id="moab" points="0,0 0,1"></polygon>
+</svg>
+
+
+<!---------------------- HIGHLIGHT LAYERS (NO EDITS NEEDED) ---------------------->
+
+<div id="map_box">
+<div id="highlight_aegeas" class="highlight_layer"></div>
+<div id="highlight_europa1" class="highlight_layer"></div>
+<div id="highlight_europa2" class="highlight_layer"></div>
+<div id="highlight_europa3" class="highlight_layer"></div>
+<div id="highlight_europa4" class="highlight_layer"></div>
+<div id="highlight_ostjord" class="highlight_layer"></div>
+<div id="highlight_sahra" class="highlight_layer"></div>
+<div id="highlight_sharqaan" class="highlight_layer"></div>
+<div id="highlight_assyria" class="highlight_layer"></div>
+<div id="highlight_babylonia" class="highlight_layer"></div>
+<div id="highlight_bedoamt" class="highlight_layer"></div>
+<div id="highlight_hattusa" class="highlight_layer"></div>
+<div id="highlight_hellas" class="highlight_layer"></div>
+<div id="highlight_kmt" class="highlight_layer"></div>
+<div id="highlight_osthoj" class="highlight_layer"></div>
+<div id="highlight_valland" class="highlight_layer"></div>
+<div id="highlight_phoenicia" class="highlight_layer"></div>
+<div id="highlight_romamain" class="highlight_layer"></div>
+<div id="highlight_romawest" class="highlight_layer"></div>
+<div id="highlight_romaeast" class="highlight_layer"></div>
+<div id="highlight_romaisles" class="highlight_layer"></div>
+<div id="highlight_alacahoyuk" class="highlight_layer"></div>
+<div id="highlight_alinna" class="highlight_layer"></div>
+<div id="highlight_ankuwa" class="highlight_layer"></div>
+<div id="highlight_arzawa" class="highlight_layer"></div>
+<div id="highlight_atuna" class="highlight_layer"></div>
+<div id="highlight_carchemish" class="highlight_layer"></div>
+<div id="highlight_hattusacity" class="highlight_layer"></div>
+<div id="highlight_kanesh" class="highlight_layer"></div>
+<div id="highlight_karatepe" class="highlight_layer"></div>
+<div id="highlight_kizzuwatna" class="highlight_layer"></div>
+<div id="highlight_nerik" class="highlight_layer"></div>
+<div id="highlight_samuha" class="highlight_layer"></div>
+<div id="highlight_sapinuwa" class="highlight_layer"></div>
+<div id="highlight_tynna" class="highlight_layer"></div>
+<div id="highlight_usakihoyuk" class="highlight_layer"></div>
+<div id="highlight_athenia" class="highlight_layer"></div>
+<div id="highlight_colchis" class="highlight_layer"></div>
+<div id="highlight_taengea" class="highlight_layer"></div>
+<div id="highlight_northernlands" class="highlight_layer"></div>
+<div id="highlight_cordova" class="highlight_layer"></div>
+<div id="highlight_arisam" class="highlight_layer"></div>
+<div id="highlight_luca" class="highlight_layer"></div>
+<div id="highlight_castile" class="highlight_layer"></div>
+<div id="highlight_cartagena" class="highlight_layer"></div>
+<div id="highlight_valencia" class="highlight_layer"></div>
+<div id="highlight_tancona" class="highlight_layer"></div>
+<div id="highlight_illyrica" class="highlight_layer"></div>
+<div id="highlight_salonae" class="highlight_layer"></div>
+<div id="highlight_mariana" class="highlight_layer"></div>
+<div id="highlight_aleria" class="highlight_layer"></div>
+<div id="highlight_oblia" class="highlight_layer"></div>
+<div id="highlight_caralis" class="highlight_layer"></div>
+<div id="highlight_sardon" class="highlight_layer"></div>
+<div id="highlight_harpi" class="highlight_layer"></div>
+<div id="highlight_parma" class="highlight_layer"></div>
+<div id="highlight_mutina" class="highlight_layer"></div>
+<div id="highlight_ravenna" class="highlight_layer"></div>
+<div id="highlight_venici" class="highlight_layer"></div>
+<div id="highlight_verona" class="highlight_layer"></div>
+<div id="highlight_macenni" class="highlight_layer"></div>
+<div id="highlight_pisae" class="highlight_layer"></div>
+<div id="highlight_arretium" class="highlight_layer"></div>
+<div id="highlight_etrus" class="highlight_layer"></div>
+<div id="highlight_perusia" class="highlight_layer"></div>
+<div id="highlight_saculum" class="highlight_layer"></div>
+<div id="highlight_solsinii" class="highlight_layer"></div>
+<div id="highlight_reate" class="highlight_layer"></div>
+<div id="highlight_urbsroma" class="highlight_layer"></div>
+<div id="highlight_ostia" class="highlight_layer"></div>
+<div id="highlight_oltarum" class="highlight_layer"></div>
+<div id="highlight_ardea" class="highlight_layer"></div>
+<div id="highlight_frentaani" class="highlight_layer"></div>
+<div id="highlight_aesernia" class="highlight_layer"></div>
+<div id="highlight_capua" class="highlight_layer"></div>
+<div id="highlight_luceria" class="highlight_layer"></div>
+<div id="highlight_sipontumi" class="highlight_layer"></div>
+<div id="highlight_neapolis" class="highlight_layer"></div>
+<div id="highlight_nola" class="highlight_layer"></div>
+<div id="highlight_paesia" class="highlight_layer"></div>
+<div id="highlight_brundis" class="highlight_layer"></div>
+<div id="highlight_tarentium" class="highlight_layer"></div>
+<div id="highlight_metapontum" class="highlight_layer"></div>
+<div id="highlight_thurion" class="highlight_layer"></div>
+<div id="highlight_molcena" class="highlight_layer"></div>
+<div id="highlight_lycri" class="highlight_layer"></div>
+<div id="highlight_syracuse" class="highlight_layer"></div>
+<div id="highlight_lilbaeum" class="highlight_layer"></div>
+<div id="highlight_kaldrtoft" class="highlight_layer"></div>
+<div id="highlight_trausttoft" class="highlight_layer"></div>
+<div id="highlight_gardasbru" class="highlight_layer"></div>
+<div id="highlight_dalrgata" class="highlight_layer"></div>
+<div id="highlight_steinnvik" class="highlight_layer"></div>
+<div id="highlight_breidrbekk" class="highlight_layer"></div>
+<div id="highlight_husnesklif" class="highlight_layer"></div>
+<div id="highlight_tiwsborg" class="highlight_layer"></div>
+<div id="highlight_hlidskjalfsalr" class="highlight_layer"></div>
+<div id="highlight_holmbrekka" class="highlight_layer"></div>
+<div id="highlight_raudrvangr" class="highlight_layer"></div>
+<div id="highlight_groennvangr" class="highlight_layer"></div>
+<div id="highlight_brokknyroft" class="highlight_layer"></div>
+<div id="highlight_beodricsworth" class="highlight_layer"></div>
+<div id="highlight_nosudrom" class="highlight_layer"></div>
+<div id="highlight_portofthewest" class="highlight_layer"></div>
+<div id="highlight_amnsharoasis" class="highlight_layer"></div>
+<div id="highlight_oorsprong" class="highlight_layer"></div>
+<div id="highlight_alexandria" class="highlight_layer"></div>
+<div id="highlight_bubastis" class="highlight_layer"></div>
+<div id="highlight_cairo" class="highlight_layer"></div>
+<div id="highlight_giza" class="highlight_layer"></div>
+<div id="highlight_itsmalia" class="highlight_layer"></div>
+<div id="highlight_kafrelibsa" class="highlight_layer"></div>
+<div id="highlight_kilwa" class="highlight_layer"></div>
+<div id="highlight_kumut" class="highlight_layer"></div>
+<div id="highlight_lungwa" class="highlight_layer"></div>
+<div id="highlight_manopotapa" class="highlight_layer"></div>
+<div id="highlight_memphis" class="highlight_layer"></div>
+<div id="highlight_mendes" class="highlight_layer"></div>
+<div id="highlight_momborah" class="highlight_layer"></div>
+<div id="highlight_nabdorah" class="highlight_layer"></div>
+<div id="highlight_qusetta" class="highlight_layer"></div>
+<div id="highlight_sais" class="highlight_layer"></div>
+<div id="highlight_sotte" class="highlight_layer"></div>
+<div id="highlight_talutt" class="highlight_layer"></div>
+<div id="highlight_zanzibar" class="highlight_layer"></div>
+<div id="highlight_elminya" class="highlight_layer"></div>
+<div id="highlight_luxfa" class="highlight_layer"></div>
+<div id="highlight_mansa" class="highlight_layer"></div>
+<div id="highlight_qalha" class="highlight_layer"></div>
+<div id="highlight_rofah" class="highlight_layer"></div>
+<div id="highlight_shedet" class="highlight_layer"></div>
+<div id="highlight_thebes" class="highlight_layer"></div>
+<div id="highlight_aksum" class="highlight_layer"></div>
+<div id="highlight_anum" class="highlight_layer"></div>
+<div id="highlight_benin" class="highlight_layer"></div>
+<div id="highlight_edwa" class="highlight_layer"></div>
+<div id="highlight_eldaihab" class="highlight_layer"></div>
+<div id="highlight_kabwe" class="highlight_layer"></div>
+<div id="highlight_kudos" class="highlight_layer"></div>
+<div id="highlight_kumaan" class="highlight_layer"></div>
+<div id="highlight_malimasi" class="highlight_layer"></div>
+<div id="highlight_mirsaelnasr" class="highlight_layer"></div>
+<div id="highlight_naqmis" class="highlight_layer"></div>
+<div id="highlight_obsor" class="highlight_layer"></div>
+<div id="highlight_rassufaga" class="highlight_layer"></div>
+<div id="highlight_wadeltalke" class="highlight_layer"></div>
+<div id="highlight_zefta" class="highlight_layer"></div>
+<div id="highlight_mitanni" class="highlight_layer"></div>
+<div id="highlight_nasibina" class="highlight_layer"></div>
+<div id="highlight_tushpa" class="highlight_layer"></div>
+<div id="highlight_kalhu" class="highlight_layer"></div>
+<div id="highlight_ninuwa" class="highlight_layer"></div>
+<div id="highlight_haran" class="highlight_layer"></div>
+<div id="highlight_assur" class="highlight_layer"></div>
+<div id="highlight_arrapkha" class="highlight_layer"></div>
+<div id="highlight_aleppo" class="highlight_layer"></div>
+<div id="highlight_rezeph" class="highlight_layer"></div>
+<div id="highlight_sidon" class="highlight_layer"></div>
+<div id="highlight_terqa" class="highlight_layer"></div>
+<div id="highlight_durkurigalzu" class="highlight_layer"></div>
+<div id="highlight_babylon" class="highlight_layer"></div>
+<div id="highlight_sippar" class="highlight_layer"></div>
+<div id="highlight_uruk" class="highlight_layer"></div>
+<div id="highlight_portofkissik" class="highlight_layer"></div>
+<div id="highlight_ammun" class="highlight_layer"></div>
+<div id="highlight_damascus" class="highlight_layer"></div>
+<div id="highlight_israel" class="highlight_layer"></div>
+<div id="highlight_jerusalem" class="highlight_layer"></div>
+<div id="highlight_judah" class="highlight_layer"></div>
+<div id="highlight_moab" class="highlight_layer"></div>
+</div></div>
+
+
+<!---------------------- PROVINCIAL INFO CONTENT ---------------------->
+
+<div class="mapcontent_move">
+<div id="mct_alacahoyuk" class="mapcontent">
+<table class="tblheader"><tr><td class="tblhead top" width="300px"><b>Alaca Hoyuk</b><div style="float:right; margin:2px 0px 0px 0px;"><a href="/board/832" style="border:0px;"><img src="//storage.forums.net/7040057/images/xDqjiUnfXGfcrMLVqMRC.png" style="animation: rightbounce 3s; animation-iteration-count: infinite;"></a></div></td><td class="tblhead tblheadimg brdimg832"></td></tr></table>
+<table><tr><td class="tblhead">Ruling House</td><td>Open</td></tr>
+<tr><td class="tblhead">Antuhsa</td><td>Open</td></tr>
+<tr><td class="tblhead">Population</td><td>11,800</td></tr>
+<tr><td class="tblhead">Military Specialism</td><td>Mounted archery, Fort / City defence, Vanguard exploration.</td></tr>
+<tr><td class="tblhead">Main Export</td><td><b>Gold and jewel work</b></td></tr>
+<tr><td class="tblhead">Sub-Export</td><td>Faience, glassware, sculpture, pottery.</td></tr></table></div>
+</div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const mapBox = document.getElementById('map_box');
+
+    const highlightLayers =
+        document.querySelectorAll('.highlight_layer');
+
+    const realmPolys =
+        document.getElementById('realm_polys');
+
+
+    /* =====================================================
+       POLYGON GROUPS
+       ===================================================== */
+
+    const polygonGroups = {
+
+        realm: document.getElementById('realm_polys'),
+
+        aegeas: document.getElementById('aegeas_polys'),
+        europa: document.getElementById('europa_polys'),
+        ostjord: document.getElementById('ostjord_polys'),
+        sahra: document.getElementById('sahra_polys'),
+        sharqaan: document.getElementById('sharqaan_polys'),
+
+        hattusa: document.getElementById('hattusa_polys'),
+        hellas: document.getElementById('hellas_polys'),
+
+        romawest: document.getElementById('romawest_polys'),
+        romaeast: document.getElementById('romaeast_polys'),
+        romaisles: document.getElementById('romaisles_polys'),
+        romamain: document.getElementById('romamain_polys'),
+
+        osthoj: document.getElementById('osthoj_polys'),
+        valland: document.getElementById('valland_polys'),
+
+        bedoamt: document.getElementById('bedoamt_polys'),
+        kmt: document.getElementById('kmt_polys'),
+
+        assyria: document.getElementById('assyria_polys'),
+        babylonia: document.getElementById('babylonia_polys'),
+        phoenicia: document.getElementById('phoenicia_polys')
+
+    };
+
+
+    /* =====================================================
+       HIERARCHY
+       =====================================================
+
+       Each entry tells the code which polygon group should
+       appear when that polygon is clicked.
+       ===================================================== */
+
+    const hierarchy = {
+
+        /* REALMS → LEVEL 2 */
+
+        aegeas: 'aegeas_polys',
+
+        europa1: 'europa_polys',
+        europa2: 'europa_polys',
+        europa3: 'europa_polys',
+        europa4: 'europa_polys',
+
+        ostjord: 'ostjord_polys',
+
+        sahra: 'sahra_polys',
+
+        sharqaan: 'sharqaan_polys',
+
+
+        /* AEGEAS → LEVEL 3 */
+
+        hattusa: 'hattusa_polys',
+        hellas: 'hellas_polys',
+
+
+        /* EUROPA → LEVEL 3 */
+
+        romawest: 'romawest_polys',
+        romaeast: 'romaeast_polys',
+        romaisles: 'romaisles_polys',
+        romamain: 'romamain_polys',
+
+
+        /* OSTJORD → LEVEL 3 */
+
+        osthoj: 'osthoj_polys',
+        valland: 'valland_polys',
+
+
+        /* SAHRA → LEVEL 3 */
+
+        bedoamt: 'bedoamt_polys',
+        kmt: 'kmt_polys',
+
+
+        /* SHARQAAN → LEVEL 3 */
+
+        assyria: 'assyria_polys',
+        babylonia: 'babylonia_polys',
+        phoenicia: 'phoenicia_polys'
+
+    };
+
+
+    /* =====================================================
+       CHILD → PARENT RELATIONSHIP
+       ===================================================== */
+
+    const parentGroups = {
+
+        hattusa: 'aegeas_polys',
+        hellas: 'aegeas_polys',
+
+        romawest: 'europa_polys',
+        romaeast: 'europa_polys',
+        romaisles: 'europa_polys',
+        romamain: 'europa_polys',
+
+        osthoj: 'ostjord_polys',
+        valland: 'ostjord_polys',
+
+        bedoamt: 'sahra_polys',
+        kmt: 'sahra_polys',
+
+        assyria: 'sharqaan_polys',
+        babylonia: 'sharqaan_polys',
+        phoenicia: 'sharqaan_polys'
+
+    };
+
+
+    /* =====================================================
+       HIDE ALL POLYGON GROUPS
+       ===================================================== */
+
+    function hideAllPolygonGroups() {
+
+        Object.keys(polygonGroups).forEach(function (key) {
+
+            const group = polygonGroups[key];
+
+            if (group) {
+                group.style.display = 'none';
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SHOW GROUP
+       ===================================================== */
+
+    function showGroup(groupId) {
+
+        const group =
+            document.getElementById(groupId);
+
+        if (group) {
+
+            group.style.display = 'block';
+
+            group.style.pointerEvents = 'auto';
+
+            console.log(
+                'Showing polygon group:',
+                groupId
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       HIGHLIGHTS
+       ===================================================== */
+
+    function hideAllHighlights() {
+
+        highlightLayers.forEach(function (layer) {
+
+            layer.classList.remove('visible');
+
+        });
+
+    }
+
+
+    /* =====================================================
+       GET POLYGON ID
+       ===================================================== */
+
+    function getPolygonId(poly) {
+
+        return poly.getAttribute('id');
+
+    }
+
+
+    /* =====================================================
+       ADD EVENTS TO POLYGON
+       ===================================================== */
+
+    function attachPolygonEvents(poly) {
+
+        const id =
+            getPolygonId(poly);
+
+        if (!id) return;
+
+
+        const highlight =
+            document.getElementById(
+                'highlight_' + id
+            );
+
+
+        /* -----------------------------------------------
+           HOVER
+           ----------------------------------------------- */
+
+        poly.addEventListener(
+            'mouseenter',
+            function () {
+
+                if (highlight) {
+
+                    highlight.classList.add(
+                        'visible'
+                    );
+
+                }
+
+            }
+        );
+
+
+        poly.addEventListener(
+            'mouseleave',
+            function () {
+
+                if (highlight) {
+
+                    highlight.classList.remove(
+                        'visible'
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* -----------------------------------------------
+           CLICK
+           ----------------------------------------------- */
+
+        poly.addEventListener(
+            'click',
+            function () {
+
+                console.log(
+                    'Clicked:',
+                    id
+                );
+
+
+                /* ---------------------------------------
+                   HIGHLIGHT
+                   --------------------------------------- */
+
+                if (highlight) {
+
+                    hideAllHighlights();
+
+                    highlight.classList.add(
+                        'visible'
+                    );
+
+                }
+
+
+                /* ---------------------------------------
+                   DETERMINE CHILD GROUP
+                   --------------------------------------- */
+
+                const childGroupId =
+                    hierarchy[id];
+
+
+                /* ---------------------------------------
+                   EUROPA REALM
+                   --------------------------------------- */
+
+                if (
+                    id === 'europa1' ||
+                    id === 'europa2' ||
+                    id === 'europa3' ||
+                    id === 'europa4'
+                ) {
+
+                    mapBox.className =
+                        id + ' realm';
+
+                    hideAllPolygonGroups();
+
+                    showGroup(
+                        'europa_polys'
+                    );
+
+                    return;
+                }
+
+
+                /* ---------------------------------------
+                   NORMAL REALM → LEVEL 2
+                   --------------------------------------- */
+
+                if (
+                    id === 'aegeas' ||
+                    id === 'ostjord' ||
+                    id === 'sahra' ||
+                    id === 'sharqaan'
+                ) {
+
+                    mapBox.className =
+                        id + ' realm';
+
+                    hideAllPolygonGroups();
+
+                    if (childGroupId) {
+
+                        showGroup(
+                            childGroupId
+                        );
+
+                    }
+
+                    return;
+                }
+
+
+                /* ---------------------------------------
+                   LEVEL 2 → LEVEL 3
+                   --------------------------------------- */
+
+                if (childGroupId) {
+
+                    mapBox.className =
+                        id + ' subrealm';
+
+                    hideAllPolygonGroups();
+
+                    showGroup(
+                        childGroupId
+                    );
+
+                    console.log(
+                        'Showing child group:',
+                        childGroupId
+                    );
+
+                    return;
+                }
+
+
+                /* ---------------------------------------
+                   LEVEL 3 POLYGON
+                   ---------------------------------------
+
+                   These are the final polygons.
+
+                   Clicking one keeps the current zoom
+                   and highlight active.
+                   --------------------------------------- */
+
+                mapBox.classList.add(
+                    'subsubrealm'
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ATTACH EVENTS TO ALL POLYGONS
+       ===================================================== */
+
+    document
+        .querySelectorAll(
+            'svg polygon'
+        )
+        .forEach(function (poly) {
+
+            attachPolygonEvents(poly);
+
+        });
+
+
+    /* =====================================================
+       INITIAL STATE
+       ===================================================== */
+
+    hideAllPolygonGroups();
+
+    realmPolys.style.display =
+        'block';
+
+    realmPolys.style.pointerEvents =
+        'auto';
+
+
+    /* =====================================================
+       ESCAPE = RETURN TO FULL MAP
+       ===================================================== */
+
+    document.addEventListener(
+        'keydown',
+        function (e) {
+
+            if (e.key !== 'Escape') {
+                return;
+            }
+
+
+            console.log(
+                'Escape pressed — resetting map.'
+            );
+
+
+            /* Reset zoom */
+
+            mapBox.className =
+                '';
+
+
+            /* Remove highlights */
+
+            hideAllHighlights();
+
+
+            /* Hide all polygon groups */
+
+            hideAllPolygonGroups();
+
+
+            /* Return to realm polygons */
+
+            realmPolys.style.display =
+                'block';
+
+            realmPolys.style.pointerEvents =
+                'auto';
+
+        }
+    );
+
+
+    /* =====================================================
+       NAVIGATION TREE
+       ===================================================== */
+
+    const persistentNav = new Set();
+
+    function getNavItem(id) {
+
+        const items =
+            document.getElementsByClassName(
+                'mn_' + id
+            );
+
+        return items.length
+            ? items[0]
+            : null;
+    }
+
+
+    function showNavItem(id) {
+
+        const item = getNavItem(id);
+
+        if (item) {
+            item.style.display =
+                'inline-block';
+        }
+    }
+
+
+    function hideNavItem(id) {
+
+        const item = getNavItem(id);
+
+        if (
+            item &&
+            !persistentNav.has(id)
+        ) {
+            item.style.display =
+                'none';
+        }
+    }
+
+
+    function clearNavigation() {
+
+        persistentNav.clear();
+
+        document
+            .querySelectorAll('.map_nav .mn')
+            .forEach(function (item) {
+
+                if (
+                    !item.classList.contains(
+                        'mn_buffer'
+                    )
+                ) {
+                    item.style.display =
+                        'none';
+                }
+
+            });
+    }
+
+
+    document
+        .querySelectorAll('svg polygon')
+        .forEach(function (poly) {
+
+            const id =
+                poly.getAttribute('id');
+
+            if (!id) return;
+
+
+            poly.addEventListener(
+                'mouseenter',
+                function () {
+
+                    showNavItem(id);
+
+                }
+            );
+
+
+            poly.addEventListener(
+                'mouseleave',
+                function () {
+
+                    hideNavItem(id);
+
+                }
+            );
+
+
+            poly.addEventListener(
+                'click',
+                function () {
+
+                    persistentNav.add(id);
+
+                    showNavItem(id);
+
+                }
+            );
+
+        });
+
+
+    document.addEventListener(
+        'keydown',
+        function (e) {
+
+            if (e.key === 'Escape') {
+
+                clearNavigation();
+
+            }
+
+        }
+    );
+
+});
+</script>
