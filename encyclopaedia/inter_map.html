@@ -19,7 +19,7 @@
 /* =========== MAP BOX / CONTAINER =========== */
 #map_box_bdr { position: relative; border: 1px solid #ccc; width: 720px; height: 560px; overflow: hidden; z-index:20; }
 #map_box { position: relative; width: 720px; height: 560px; background-image: url('//storage.forums.net/7040057/images/ElgkjrwIBGUNuyxwTKYI.png'); background-size: 720px 560px; background-repeat: no-repeat; background-position: 0px 0px; transition: width 0.6s ease, height 0.6s ease, margin 0.6s ease, background-size 0.6s ease; }
-#realm_polys, #aegeas_polys, #europa_polys, #ostjord_polys, #sahra_polys, #sharqaan_polys, #hattusa_polys, #hellas_polys, #romawest_polys, #romaeast_polys, #romaisles_polys, #romamain_polys, #osthoj_polys, #valland_polys, #bedoamt_polys, #kmt_polys, #assyria_polys, #babylonia_polys, #phoenicia_polys { position: absolute; z-index: 3; width: 720px; height: 560px; top: 0; left: 0; pointer-events: auto; }
+#realm_polys, #aegeas_polys, #europa_polys, #ostjord_polys, #sahra_polys, #sharqaan_polys, #hattusa_polys, #hellas_polys, #athenia_polys, #colchis_polys, #taengea_polys, #romawest_polys, #romaeast_polys, #romaisles_polys, #romamain_polys, #osthoj_polys, #valland_polys, #bedoamt_polys, #kmt_polys, #assyria_polys, #babylonia_polys, #phoenicia_polys { position: absolute; z-index: 3; width: 720px; height: 560px; top: 0; left: 0; pointer-events: auto; }
 svg polygon { pointer-events: fill; fill: transparent; }
 svg polygon:hover { cursor: pointer; }
 .highlight_layer { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-repeat: no-repeat; background-position: 0px 0px; background-size: 100% 100%; pointer-events: none; z-index: 1; opacity: 0; filter: grayscale(0%); margin: 0px; -webkit-transition: 0.6s ease; -moz-transition: 0.6s ease; transition: 0.6s ease; }
@@ -315,7 +315,7 @@ margin: -555px 0 0 -313px; }
 
 <div class="mn mn2 mn_athenia">Athenia</div>
 <div class="mn mn2 mn_colchis">Colchis</div>
-<div class="mn mn2 mn_colchis">Taengea</div>
+<div class="mn mn2 mn_taengea">Taengea</div>
 
 <div class="mn mn3 mn_kaldrtoft">Kaldrtoft</div>
 <div class="mn mn3 mn_trausttoft">Trausttoft</div>
@@ -516,6 +516,22 @@ margin: -555px 0 0 -313px; }
 <polygon id="athenia" points="173,234 198,228 207,237 222,235 243,201 240,173 254,138 267,125 312,140 318,156 309,158 299,148 288,148 283,156 285,170 301,188 319,220 322,242 340,264 362,270 369,279 375,296 388,305 387,316 363,322 362,336 353,336 332,314 314,318 325,346 305,372 314,413 312,438 303,440 295,427 292,395 283,398 276,419 268,412 265,385 252,383 248,401 238,396 228,373 228,362 218,336 190,338 175,324 161,301 165,287 176,259 183,250"></polygon>
 <polygon id="colchis" points="367,118 381,93 398,95 423,111 433,137 448,136 472,152 445,210 442,217 415,228 405,217 413,187 379,156"></polygon>
 <polygon id="taengea" points="413,344 433,328 505,323 505,338 514,352 512,375 487,412 466,422 448,418 444,399 453,382 441,345 415,350"></polygon>
+<polygon id="northernlands" points="0,0 0,1"></polygon>
+</svg>
+
+<!-- Athenia → PROVINCES -->
+<svg id="athenia_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<!-- Add Athenia province polygons here -->
+</svg>
+
+<!-- Colchis → PROVINCES -->
+<svg id="colchis_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<!-- Add Colchis province polygons here -->
+</svg>
+
+<!-- Taengea → PROVINCES -->
+<svg id="taengea_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
+<!-- Add Taengea province polygons here -->
 </svg>
   
 <svg id="hattusa_polys" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg">
